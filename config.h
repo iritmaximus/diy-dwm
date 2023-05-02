@@ -112,7 +112,7 @@ static const Key keys[] = {
 //{ MODKEY,                       XK_s,       togglesticky,   {0} },
 //{ MODKEY|ShiftMask,             XK_s,       togglesmartgaps,{0} },
   { MODKEY,                       XK_d,       spawn,          SHCMD("rofi -modi drun,run -show drun") },
-  { MODKEY|ShiftMask,             XK_d,       spawn,          SHCMD("") },
+  { MODKEY|ShiftMask,             XK_d,       spawn,          SHCMD("dmenu_run") },
 //{ MODKEY,                       XK_f,       togglefullscr,  {0} },
   { MODKEY,                       XK_f,       setlayout,      {.v = &layouts[2]} }, /* set layout to monocle, use fullscreen patch pls xd */
   { MODKEY|ShiftMask,             XK_f,       spawn,          SHCMD("") },
@@ -152,14 +152,16 @@ static const Key keys[] = {
 
 
   { MODKEY,                       XF86XK_AudioMute,   spawn,          SHCMD(TERMINAL " -e pavucontrol") },
-  { 0, XF86XK_AudioMute,                              spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; .scripts/volumechangenotification.sh") },
-  { 0, XF86XK_AudioRaiseVolume,                       spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%; .scripts/volumechangenotification.sh") },
-  { 0, XF86XK_AudioLowerVolume,                       spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%; .scripts/volumechangenotification.sh") },
+  { 0, XF86XK_AudioMute,                              spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle; ~/.scripts/volumechangenotification.sh") },
+  { 0, XF86XK_AudioRaiseVolume,                       spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5%; ~/.scripts/volumechangenotification.sh") },
+  { 0, XF86XK_AudioLowerVolume,                       spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5%; ~/.scripts/volumechangenotification.sh") },
   { 0, XF86XK_AudioMicMute,                           spawn,          SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 
   { 0, XF86XK_MonBrightnessUp,                        spawn,          SHCMD("xbacklight -inc 10; .scripts/brightnessnotification.sh") },
   { 0, XF86XK_MonBrightnessDown,                      spawn,          SHCMD("xbacklight -dec 10; .scripts/brightnessnotification.sh") },
   { MODKEY, XF86XK_MonBrightnessDown,                 spawn,          SHCMD("xbacklight -set 1; .scripts/brightnessnotification.sh") },
+
+  { 0, XK_Print,                                      spawn,          SHCMD("shotgun -s -f png /home/martti/Downloads/`date --iso-8601=seconds`.png; dunstify 'test' 'taking a screenshot'")}
 
 
 
